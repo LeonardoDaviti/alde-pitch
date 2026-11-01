@@ -4,9 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alde: შენ ოღონდ თქვი, ალდე იყიდის</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="assets/fonts/fonts.css" rel="stylesheet" />
 <style>
 :root {
   --bg: #08090b;
@@ -673,7 +671,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
     <svg viewBox="0 0 16 12"><path d="M8 2.5c2.3 0 4.4.9 6 2.4l1.3-1.4A10.4 10.4 0 0 0 8 .5 10.4 10.4 0 0 0 .7 3.5L2 4.9a8.4 8.4 0 0 1 6-2.4Zm0 4c1.2 0 2.3.5 3.2 1.2l1.3-1.4A6.5 6.5 0 0 0 8 4.5c-1.7 0-3.3.7-4.5 1.8l1.3 1.4C5.7 7 6.8 6.5 8 6.5Zm0 4 2-2a2.9 2.9 0 0 0-4 0l2 2Z"/></svg>
     <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="19" height="8" rx="1.8"/><rect x="24" y="4" width="2" height="4" rx="1" opacity=".45"/></svg></span></div>
-    <video id="vidB" src="assets/video-alde.mp4" muted playsinline preload="auto"></video>
+    <video id="vidB" src="assets/video-alde.mp4" muted playsinline preload="none"></video>
   </div></div>
 
   <!-- 0 · cover -->
@@ -776,7 +774,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     <div class="phone"><div class="island"></div><div class="screen"><div class="sb dark"><span>9:41</span><span style="display:flex;gap:6px;align-items:center">
     <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
     <svg viewBox="0 0 16 12"><path d="M8 2.5c2.3 0 4.4.9 6 2.4l1.3-1.4A10.4 10.4 0 0 0 8 .5 10.4 10.4 0 0 0 .7 3.5L2 4.9a8.4 8.4 0 0 1 6-2.4Zm0 4c1.2 0 2.3.5 3.2 1.2l1.3-1.4A6.5 6.5 0 0 0 8 4.5c-1.7 0-3.3.7-4.5 1.8l1.3 1.4C5.7 7 6.8 6.5 8 6.5Zm0 4 2-2a2.9 2.9 0 0 0-4 0l2 2Z"/></svg>
-    <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="19" height="8" rx="1.8"/><rect x="24" y="4" width="2" height="4" rx="1" opacity=".45"/></svg></span></div><img class="shot" src="assets/terraquirk-alde.png" alt="ალდე Terra Quirk-ზე"></div></div>
+    <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="19" height="8" rx="1.8"/><rect x="24" y="4" width="2" height="4" rx="1" opacity=".45"/></svg></span></div><img class="shot" src="assets/terraquirk-alde.jpg" alt="ალდე Terra Quirk-ზე"></div></div>
   </section>
 
   <!-- 8 · technology -->
@@ -897,14 +895,14 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   /* ---------- recordings: real taps and real time, from the recording logs ---------- */
   const A = {"duration": 104.6, "taps": [1.27, 2.17, 4.07, 10.03, 18.93, 25.05, 27.43, 29.12, 35.02, 43.97, 50.05, 52.43, 54.25, 60.22, 66.31, 68.7, 70.8, 76.68, 82.78, 85.16, 87.7, 93.61, 99.71, 101.49], "marks": {"store-cart": 101.49}, "note": "trimmed to end on the store's cart, like video B"}, B = {"duration": 35.38, "taps": [1.26, 2.33, 3.81, 5.62, 27.05], "marks": {"sent": 5.87, "cart": 16.71, "checkout": 27.3, "store-cart": 28.38}};
   const vidA = $('#vidA'), vidB = $('#vidB'), phoneB = $('#phoneB');
-  vidA.playbackRate = vidA.defaultPlaybackRate = 4; // manual run is long; the clock still shows real time
+  const SPEED_A = 4; // video A is stored at ×4 (smaller file, no browser speed-up); the clock still shows real time
   const clock = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
-  const live = (box, v, log) => {
-    const t = Math.min(v.currentTime, log.duration);
+  const live = (box, v, log, speed = 1) => {
+    const t = Math.min(v.currentTime * speed, log.duration);
     $('[data-live=t]', box).textContent = clock(t);
     $('[data-live=n]', box).textContent = log.taps.filter(x => x <= t).length;
   };
-  const tick = () => { live($('#liveA'), vidA, A); live($('#liveB'), vidB, B); requestAnimationFrame(tick); };
+  const tick = () => { live($('#liveA'), vidA, A, SPEED_A); live($('#liveB'), vidB, B); requestAnimationFrame(tick); };
   requestAnimationFrame(tick);
 
   /* ---------- slides ---------- */
@@ -921,10 +919,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     placeOrbit(s);
 
     // video A restarts whenever its slide opens; video B starts once and keeps playing across slides 2–6
-    if (s.dataset.video === 'manual') { vidA.currentTime = 0; vidA.play(); } else vidA.pause();
+    if (s.dataset.video === 'manual') { vidA.currentTime = 0; vidA.play().catch(() => {}); if (vidB.preload === 'none') { vidB.preload = 'auto'; vidB.load(); } }
+    else vidA.pause();
     const inB = s.dataset.video === 'alde', wasB = prev?.dataset.video === 'alde';
     phoneB.classList.toggle('show', inB);
-    if (inB && !wasB) { vidB.currentTime = 0; vidB.play(); }
+    if (inB && !wasB) { vidB.currentTime = 0; vidB.play().catch(() => {}); }
     if (!inB) vidB.pause();
 
     $('#num').textContent = `${String(n + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
