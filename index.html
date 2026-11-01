@@ -685,7 +685,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   <section class="slide" data-title="პრობლემა" data-video="manual">
     <div class="side wide">
       <div class="kicker rv">პრობლემა</div>
-      <h2 class="h2 rv" style="--d:100">ერთი კერძის ყიდვას 25 კლიკი და თითქმის 2 წუთი სჭირდება</h2>
+      <h2 class="h2 rv" style="--d:100">ერთი კერძის ყიდვას 24 კლიკი და თითქმის 2 წუთი სჭირდება</h2>
       <div class="live rv" style="--d:200" id="liveA"><span><b data-live="t">0:00</b><i>დრო</i></span><span><b data-live="n">0</b><i>კლიკი</i></span></div>
       <div class="facts rv" style="--d:300">
         <p><b>70%</b><span>ონლაინ კალათების მიტოვებული რჩება</span></p>
@@ -708,7 +708,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
       <h2 class="h2 rv" style="--d:100">უთხარი რეცეპტი, ალდე 11 წამში ავსებს კალათას</h2>
       <div class="live rv" style="--d:200" id="liveB"><span><b data-live="t">0:00</b><i>დრო</i></span><span><b data-live="n">0</b><i>კლიკი</i></span></div>
       <div class="facts rv" style="--d:300">
-        <p><b>5</b><span>კლიკი იგივე კერძისთვის, 25-ის ნაცვლად</span></p>
+        <p><b>5</b><span>კლიკი იგივე კერძისთვის, 24-ის ნაცვლად</span></p>
         <p><b>20%</b><span>გლობალური ონლაინ შეკვეთების AI-მ და აგენტებმა განსაზღვრა Cyber Week 2025-ზე</span></p>
       </div>
       <p class="src rv" style="--d:400">წყარო: Salesforce Shopping Index, დეკემბერი 2025 · ვიდეო: ალდე 2nabiji.ge-ზე, რეალური დრო</p>
@@ -895,7 +895,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 
   /* ---------- recordings: real taps and real time, from the recording logs ---------- */
-  const A = {"duration": 111.04, "taps": [1.27, 2.17, 4.07, 10.03, 18.93, 25.05, 27.43, 29.12, 35.02, 43.97, 50.05, 52.43, 54.25, 60.22, 66.31, 68.7, 70.8, 76.68, 82.78, 85.16, 87.7, 93.61, 99.71, 101.49, 104.78], "marks": {"checkout": 105.04}}, B = {"duration": 34.32, "taps": [1.26, 2.34, 3.82, 5.61, 27.56], "marks": {"sent": 5.87, "cart": 17.23, "checkout": 27.82}};
+  const A = {"duration": 104.6, "taps": [1.27, 2.17, 4.07, 10.03, 18.93, 25.05, 27.43, 29.12, 35.02, 43.97, 50.05, 52.43, 54.25, 60.22, 66.31, 68.7, 70.8, 76.68, 82.78, 85.16, 87.7, 93.61, 99.71, 101.49], "marks": {"store-cart": 101.49}, "note": "trimmed to end on the store's cart, like video B"}, B = {"duration": 35.38, "taps": [1.26, 2.33, 3.81, 5.62, 27.05], "marks": {"sent": 5.87, "cart": 16.71, "checkout": 27.3, "store-cart": 28.38}};
   const vidA = $('#vidA'), vidB = $('#vidB'), phoneB = $('#phoneB');
   vidA.playbackRate = vidA.defaultPlaybackRate = 4; // manual run is long; the clock still shows real time
   const clock = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
