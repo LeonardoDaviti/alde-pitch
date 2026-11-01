@@ -32,14 +32,14 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   transform-origin: center; overflow: hidden; background: var(--bg);
 }
 /* v4 background: drifting haze + falling specks + film grain */
-.haze { position: absolute; inset: -20%; filter: blur(70px); opacity: .75; pointer-events: none; z-index: 0; }
-.haze i { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(160,170,190,.45), transparent 65%); animation: drift 28s ease-in-out infinite alternate; }
+.haze { position: absolute; inset: -20%; pointer-events: none; z-index: 0; } /* no blur filter / group opacity: both forced full repaints */
+.haze i { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(160,170,190,.42) 0%, rgba(160,170,190,.2) 32%, rgba(160,170,190,.06) 55%, transparent 72%); animation: drift 28s ease-in-out infinite alternate; will-change: transform; opacity: .75; }
 .haze i:nth-child(1) { width: 1056px; height: 1056px; left: -5%; top: 0; }
-.haze i:nth-child(2) { width: 768px; height: 768px; right: 0; top: 10%; animation-duration: 34s; opacity: .6; }
-.haze i:nth-child(3) { width: 540px; height: 540px; left: 40%; bottom: 0; background: radial-gradient(circle, rgba(255,45,45,.18), transparent 68%); animation-duration: 22s; }
+.haze i:nth-child(2) { width: 768px; height: 768px; right: 0; top: 10%; animation-duration: 34s; opacity: .45; }
+.haze i:nth-child(3) { width: 540px; height: 540px; left: 40%; bottom: 0; background: radial-gradient(circle, rgba(255,45,45,.17) 0%, rgba(255,45,45,.08) 35%, transparent 74%); animation-duration: 22s; }
 @keyframes drift { 50% { transform: translate(77px, -32px) scale(1.08); } 100% { transform: translate(-77px, 32px) scale(.96); } }
 #stars { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; z-index: 0; }
-.grain { position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay; z-index: 30;
+.grain { position: absolute; inset: 0; pointer-events: none; opacity: .035; z-index: 30; /* no blend mode: overlay re-blended the whole screen every frame */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
 /* chrome: top bar, chapter ticker, partner ticker, dot rail */
@@ -605,6 +605,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* ---------- v5: caption left, real recordings on the phone right ---------- */
 .side.wide { width: 920px; }
 .side .h2 { margin: 26px 0 34px; font-size: 52px; line-height: 1.16; }
+.side .h2.sm { font-size: 38px; line-height: 1.3; }
 .phone { left: 1250px; }
 .phone .screen { background: #fff; }
 .phone .sb { position: absolute; left: 0; right: 0; top: 0; height: 47px; background: #fff; z-index: 2; }
@@ -646,11 +647,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   <header class="top">
     <div class="brand"><svg><use href="#alde" /></svg>ALDE</div>
     <div class="context">UNI4VERSE · FINEDU</div>
-    <span class="num" id="num">01 / 10</span>
+    <span class="num" id="num">01 / 11</span>
   </header>
   <div class="ticker" aria-hidden="true"><div class="track">
-    <p><span><i>01</i><b>პრობლემა</b></span><span><i>02</i><b>გადაწყვეტა</b></span><span><i>03</i><b>ბაზარი</b></span><span><i>04</i><b>სეგმენტი</b></span><span><i>05</i><b>ბიზნეს მოდელი</b></span><span><i>06</i><b>კონკურენცია</b></span><span><i>07</i><b>ვალიდაცია</b></span><span><i>08</i><b>ტექნოლოგია</b></span><span><i>09</i><b>გუნდი</b></span></p>
-    <p><span><i>01</i><b>პრობლემა</b></span><span><i>02</i><b>გადაწყვეტა</b></span><span><i>03</i><b>ბაზარი</b></span><span><i>04</i><b>სეგმენტი</b></span><span><i>05</i><b>ბიზნეს მოდელი</b></span><span><i>06</i><b>კონკურენცია</b></span><span><i>07</i><b>ვალიდაცია</b></span><span><i>08</i><b>ტექნოლოგია</b></span><span><i>09</i><b>გუნდი</b></span></p>
+    <p><span><i>01</i><b>პრობლემა</b></span><span><i>02</i><b>გადაწყვეტა</b></span><span><i>03</i><b>მანიპულაცია</b></span><span><i>04</i><b>გონივრული ყიდვა</b></span><span><i>05</i><b>ბაზარი</b></span><span><i>06</i><b>სეგმენტი</b></span><span><i>07</i><b>ბიზნეს მოდელი</b></span><span><i>08</i><b>კონკურენცია</b></span><span><i>09</i><b>ვალიდაცია</b></span><span><i>10</i><b>გუნდი</b></span></p>
+    <p><span><i>01</i><b>პრობლემა</b></span><span><i>02</i><b>გადაწყვეტა</b></span><span><i>03</i><b>მანიპულაცია</b></span><span><i>04</i><b>გონივრული ყიდვა</b></span><span><i>05</i><b>ბაზარი</b></span><span><i>06</i><b>სეგმენტი</b></span><span><i>07</i><b>ბიზნეს მოდელი</b></span><span><i>08</i><b>კონკურენცია</b></span><span><i>09</i><b>ვალიდაცია</b></span><span><i>10</i><b>გუნდი</b></span></p>
   </div></div>
   <div class="foot" aria-hidden="true"><div class="track">
     <p><span>შენ ოღონდ თქვი</span><span>რეცეპტი → კალათა</span><span>საყიდლები</span><span>ტექნიკა</span><span>კოსმეტიკა</span><span>WooCommerce</span><span>Shopify</span><b>ალდე იყიდის</b></p>
@@ -699,17 +700,34 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     </div></div>
   </section>
 
-  <!-- 2–6 · Alde video plays on; only the caption changes -->
+  <!-- 3–9 · Alde video plays on; only the caption changes -->
   <section class="slide" data-title="გადაწყვეტა" data-video="alde">
     <div class="side wide">
       <div class="kicker rv">გადაწყვეტა</div>
-      <h2 class="h2 rv" style="--d:100">უთხარი რეცეპტი, ალდე 11 წამში ავსებს კალათას</h2>
+      <h2 class="h2 rv" style="--d:100">უთხარი რეცეპტი, ალდე 15 წამში ავსებს კალათას</h2>
       <div class="live rv" style="--d:200" id="liveB"><span><b data-live="t">0:00</b><i>დრო</i></span><span><b data-live="n">0</b><i>კლიკი</i></span></div>
       <div class="facts rv" style="--d:300">
-        <p><b>5</b><span>კლიკი იგივე კერძისთვის, 24-ის ნაცვლად</span></p>
-        <p><b>20%</b><span>გლობალური ონლაინ შეკვეთების AI-მ და აგენტებმა განსაზღვრა Cyber Week 2025-ზე</span></p>
+        <p><b>6</b><span>კლიკი იგივე კერძისთვის, 24-ის ნაცვლად</span></p>
+        <p><b>20%</b><span>ყოველ მეხუთე ონლაინ შეკვეთაში AI ეხმარებოდა მყიდველს</span></p>
       </div>
-      <p class="src rv" style="--d:400">წყარო: Salesforce Shopping Index, დეკემბერი 2025 · ვიდეო: ალდე 2nabiji.ge-ზე, რეალური დრო</p>
+      <p class="src rv" style="--d:400">წყარო: Salesforce Shopping Index, Cyber Week 2025 · ვიდეო: ალდე 2nabiji.ge-ზე · ძიების ლოდინი ×8 აჩქარებულია, დრო რეალურია</p>
+    </div>
+  </section>
+  <section class="slide" data-title="მანიპულაცია" data-video="alde">
+    <div class="side wide">
+      <div class="kicker rv">იმპულსური ყიდვა</div>
+      <h2 class="h2 rv" style="--d:100">ონლაინ მაღაზიების ნაწილი მყიდველს მარკეტინგული მანიპულაციით უბიძგებს იმპულსური ყიდვისკენ, ხოლო დაუფიქრებელი ყიდვა ამ რისკს კიდევ უფრო ზრდის.</h2>
+    </div>
+  </section>
+  <section class="slide" data-title="გონივრული ყიდვა" data-video="alde">
+    <div class="side wide">
+      <div class="kicker rv">გონივრული ყიდვა</div>
+      <h2 class="h2 sm rv" style="--d:100">ალდე ადარებს ფასებს, ამოწმებს ლიმიტს და მომხმარებლის აქტივობის გაანალიზებით ინდივიდუალურად სთავაზობს მიმდინარე ქეშბექებს, სეილებს და მისთვის მომგებიან გამოწერებს.</h2>
+      <div class="facts rv" style="--d:300">
+        <p><b>−1.66 ₾</b><span>უფრო იაფი და დიდი ანალოგი: ბარილა 450გრ → დონა კიარა 500გრ, ერთი დაჭერით</span></p>
+        <p><b>49.99 ₾</b><span>2 ნაბიჯის წლიური უფასო მიტანა: თვეში 4 შეკვეთით (2.99 ₾ მიტანა) წელიწადში 93.53 ₾ ეზოგება</span></p>
+      </div>
+      <p class="src rv" style="--d:400">ფასები რეალურია (2nabiji.ge) · ლიმიტი, ხარჯი და შეკვეთების სიხშირე დემო მონაცემებია</p>
     </div>
   </section>
   <section class="slide" data-title="ბაზარი" data-video="alde">
@@ -717,10 +735,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
       <div class="kicker rv">ბაზარი</div>
       <h2 class="h2 rv" style="--d:100">საქართველოში 10 000 კომპანია ყიდის ონლაინ</h2>
       <div class="facts rv" style="--d:300">
-        <p><b>₾3.5 მლრდ</b><span>ონლაინ ვაჭრობა 2024 წელს</span></p>
-        <p><b>₾10.7 მლრდ</b><span>პროგნოზი 2030 წლისთვის</span></p>
+        <p><b>₾3.5 მლრდ</b><span>შეადგინა ონლაინ ვაჭრობამ 2024 წელს</span></p>
       </div>
-      <blockquote class="quote rv" style="--d:400">„შემდეგი ნაბიჯი: AI ინტეგრაცია, ძიებისა და რეკომენდაციების მოსარგებად“</blockquote>
       <p class="src rv" style="--d:500">წყარო: Galt &amp; Taggart (Bank of Georgia), „E-commerce in Georgia“, დეკემბერი 2025</p>
     </div>
   </section>
@@ -728,34 +744,31 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     <div class="side wide">
       <div class="kicker rv">სეგმენტი</div>
       <h2 class="h2 rv" style="--d:100">ჯერ მცირე და საშუალო ონლაინ მაღაზიები, შემდეგ დიდები</h2>
-      <div class="facts rv" style="--d:300">
-        <p><b>01</b><span>მცირე და საშუალო: ინტეგრაცია ერთ დღეში, საკუთარი AI გუნდის გარეშე</span></p>
-        <p><b>02</b><span>დიდი ქსელები: შემდეგი ეტაპი</span></p>
-      </div>
       <p class="lead rv" style="--d:450">ყიდვამდე ალდე აჩვენებს <b>ჯამს, კატეგორიებს და კალორიებს.</b></p>
     </div>
   </section>
   <section class="slide" data-title="ბიზნეს მოდელი" data-video="alde">
     <div class="side wide">
       <div class="kicker rv">ბიზნეს მოდელი</div>
-      <div class="todo rv" style="--d:100">მოდელი დასაზუსტებელია · განვიხილავთ ცალკე</div>
+      <h2 class="h2 rv" style="--d:100">ვიღებთ, როცა ბიზნესი იღებს</h2>
       <div class="facts rv" style="--d:300">
-        <p><b>01</b><span>მომხმარებელი იხდის მაღაზიის არსებული გადახდის სისტემით, ალდე ფულს არ ინახავს</span></p>
-        <p><b>02</b><span>ალდე ვერ ხედავს ბარათისა და პირად მონაცემებს</span></p>
-        <p><b>03</b><span>თანხის განაწილება მხარეებს შორის მომხმარებლისთვის გამჭვირვალეა</span></p>
+        <p><b>2%</b><span>ყოველი ტრანზაქციიდან, რომელიც ალდეს გავლით შედგა</span></p>
+        <p><b>+ ინტეგრაცია</b><span>ერთჯერადი საფასური, საგრძნობლად ნაკლები, ვიდრე ასეთი პროდუქტის ხელით შექმნა</span></p>
+        <p><b>+ მეინთენენსი</b><span>ყოველთვიური საფასური მხარდაჭერასა და განახლებებზე</span></p>
       </div>
     </div>
   </section>
   <section class="slide" data-title="კონკურენცია" data-video="alde">
     <div class="side wide">
       <div class="kicker rv">კონკურენცია</div>
-      <h2 class="h2 rv" style="--d:100">ჩატბოტები გირჩევენ. ალდე ყიდულობს.</h2>
+      <h2 class="h2 rv" style="--d:100">ჩატბოტები მხოლოდ გირჩევენ, ალდე პერსონალიზებულია და გყიდულობს.</h2>
       <div class="cmp narrow rv" style="--d:300">
         <div class="cr hd"><span></span><b>არსებული ჩატბოტები</b><b class="us">ALDE</b></div>
         <div class="cr"><span>პროდუქტის რჩევა</span><i class="y">✓</i><i class="y">✓</i></div>
         <div class="cr"><span>კალათაში დამატება</span><i class="n">✕</i><i class="y">✓</i></div>
         <div class="cr"><span>მთელი კალათა რეცეპტიდან ან სიიდან</span><i class="n">✕</i><i class="y">✓</i></div>
         <div class="cr"><span>ჩატიდან პირდაპირ გადახდაზე</span><i class="n">✕</i><i class="y">✓</i></div>
+        <div class="cr"><span>გეხმარება გონივრულ ყიდვაში</span><i class="n">✕</i><i class="y">✓</i></div>
       </div>
     </div>
   </section>
@@ -767,9 +780,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
       <h2 class="h2 rv" style="--d:100">5 კომპანია უკვე ალდესთან, 2-თან მოლაპარაკება მიდის</h2>
       <div class="facts rv" style="--d:300">
         <p><b>32%</b><span>უფრო სწრაფად იზრდება გაყიდვები AI აგენტების მქონე მაღაზიებში</span></p>
-        <p><b>42%</b><span>უკეთ ყიდულობენ AI-დან შემოსული ვიზიტორები</span></p>
       </div>
-      <p class="src rv" style="--d:400">წყარო: Salesforce, Cyber Week 2025 · Adobe Digital Insights, აშშ, მარტი 2026 · ეკრანზე: ალდე terraquirk.com-ზე</p>
+      <p class="src rv" style="--d:400">წყარო: Salesforce, Cyber Week 2025 · ეკრანზე: ალდე terraquirk.com-ზე</p>
     </div>
     <div class="phone"><div class="island"></div><div class="screen"><div class="sb dark"><span>9:41</span><span style="display:flex;gap:6px;align-items:center">
     <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
@@ -777,19 +789,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="19" height="8" rx="1.8"/><rect x="24" y="4" width="2" height="4" rx="1" opacity=".45"/></svg></span></div><img class="shot" src="assets/terraquirk-alde.jpg" alt="ალდე Terra Quirk-ზე"></div></div>
   </section>
 
-  <!-- 8 · technology -->
-  <section class="slide" data-title="ტექნოლოგია"><div class="ghost" aria-hidden="true"><b>TECH</b><b>TECH</b></div>
-    <div class="cs">
-      <div class="kicker rv">ტექნოლოგია</div>
-      <h2 class="h2 rv" style="--d:100">ტექნიკური ბარიერი არ არსებობს</h2>
-      <div class="flow3">
-        <div class="f3 rv" style="--d:250"><i>01</i><b>მაღაზია</b><small>WooCommerce · Shopify · საკუთარი სისტემა</small></div><em class="rv" style="--d:300">→</em>
-        <div class="f3 rv" style="--d:350"><i>02</i><b>ალდე</b><small>ესმის თხოვნა, ეძებს, ირჩევს</small></div><em class="rv" style="--d:400">→</em>
-        <div class="f3 red rv" style="--d:450"><i>03</i><b>კალათა</b><small>გადახდა მაღაზიის სისტემით</small></div>
-      </div>
-      <p class="lead rv" style="--d:600;max-width:1400px;margin-top:44px">3 პლატფორმის ადაპტერი უკვე მუშაობს, ამიტომ <b>ახალი მაღაზია ერთ დღეში უერთდება.</b></p>
-    </div>
-  </section>
 
   <!-- 9 · team (from v4.1) -->
   <section class="slide " data-title="გუნდი" data-orb="hide"><div class="ghost" aria-hidden="true"><b>TEAM</b><b>TEAM</b></div>
@@ -857,6 +856,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2); ctx.fill();
     };
     const frame = now => {
+      if (orbitEl.style.opacity === '0') return idle(now);
       const dt = Math.min((now - prev) / 1000, .05); prev = now; t += dt;
       const tx = Math.cos(t * SPEED) * R * .85, ty = Math.sin(t * SPEED * 1.5) * R * .42;
       vx += ((tx - x) * 40 - vx * 12) * dt; vy += ((ty - y) * 40 - vy * 12) * dt;
@@ -872,16 +872,21 @@ button { font: inherit; color: inherit; background: none; border: 0; }
       blob(c + x, c + y, CORE, [[0, 'rgba(255,255,255,1)'], [.55, 'rgba(255,250,250,.95)'], [1, 'rgba(255,255,255,0)']]);
       requestAnimationFrame(frame);
     };
-    requestAnimationFrame(frame);
+    const idle = now => { // skip all drawing while the orbit is hidden
+      if (orbitEl.style.opacity !== '0') { prev = now; return requestAnimationFrame(frame); }
+      setTimeout(() => requestAnimationFrame(idle), 250);
+    };
+    requestAnimationFrame(idle);
   })();
 
   /* ---------- v4 background: falling specks (some red) ---------- */
   (() => {
     const cv = $('#stars'), g = cv.getContext('2d');
     const dots = Array.from({ length: 60 }, () => ({ x: Math.random(), y: Math.random(), r: Math.random() * 1.6 + .5, s: Math.random() * .15 + .02, a: Math.random() * 6, red: Math.random() > .92 }));
-    let t = 0;
+    let t = 0, odd = false;
     const frame = () => {
-      t += .004; g.clearRect(0, 0, 1920, 1080);
+      if ((odd = !odd)) return requestAnimationFrame(frame); // draw every other frame (~30 fps)
+      t += .008; g.clearRect(0, 0, 1920, 1080);
       for (const d of dots) {
         g.fillStyle = d.red ? `rgba(255,45,45,${.35 + .4 * Math.sin(t * 3 + d.a)})` : `rgba(255,255,255,${.15 + .35 * Math.sin(t * 2 + d.a)})`;
         g.fillRect(d.x * 1920, ((d.y + t * d.s) % 1) * 1080, d.r, d.r);
@@ -893,16 +898,31 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 
   /* ---------- recordings: real taps and real time, from the recording logs ---------- */
-  const A = {"duration": 104.6, "taps": [1.27, 2.17, 4.07, 10.03, 18.93, 25.05, 27.43, 29.12, 35.02, 43.97, 50.05, 52.43, 54.25, 60.22, 66.31, 68.7, 70.8, 76.68, 82.78, 85.16, 87.7, 93.61, 99.71, 101.49], "marks": {"store-cart": 101.49}, "note": "trimmed to end on the store's cart, like video B"}, B = {"duration": 35.38, "taps": [1.26, 2.33, 3.81, 5.62, 27.05], "marks": {"sent": 5.87, "cart": 16.71, "checkout": 27.3, "store-cart": 28.38}};
+  const A = {"duration": 104.6, "taps": [1.27, 2.17, 4.07, 10.03, 18.93, 25.05, 27.43, 29.12, 35.02, 43.97, 50.05, 52.43, 54.25, 60.22, 66.31, 68.7, 70.8, 76.68, 82.78, 85.16, 87.7, 93.61, 99.71, 101.49], "marks": {"store-cart": 101.49}, "note": "trimmed to end on the store's cart, like video B"}, B = {"duration": 31.01, "taps": [1.24, 2.32, 3.81, 5.61, 24.78, 27.61], "marks": {"sent": 5.86, "cart": 20.74, "swap": 25.06, "checkout": 27.86, "store-cart": 29}, "fast": {"from": 6.76, "to": 20.34, "speed": 8}};
   const vidA = $('#vidA'), vidB = $('#vidB'), phoneB = $('#phoneB');
   const SPEED_A = 4; // video A is stored at ×4 (smaller file, no browser speed-up); the clock still shows real time
   const clock = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
-  const live = (box, v, log, speed = 1) => {
-    const t = Math.min(v.currentTime * speed, log.duration);
-    $('[data-live=t]', box).textContent = clock(t);
-    $('[data-live=n]', box).textContent = log.taps.filter(x => x <= t).length;
+  // video time → real time: a whole-video speed-up (A), and/or one fast-forwarded stretch (B's search wait)
+  const real = (log, t) => {
+    const f = log.fast; if (!f) return t;
+    const len = (f.to - f.from) / f.speed;
+    return t < f.from ? t : t < f.from + len ? f.from + (t - f.from) * f.speed : t + (f.to - f.from) - len;
   };
-  const tick = () => { live($('#liveA'), vidA, A, SPEED_A); live($('#liveB'), vidB, B); requestAnimationFrame(tick); };
+  const live = (box, v, log, speed = 1) => {
+    if (v.paused && box.dataset.done === String(v.currentTime)) return;
+    box.dataset.done = String(v.currentTime);
+    const t = Math.min(real(log, v.currentTime * speed), log.duration);
+    const tt = clock(t), nn = String(log.taps.filter(x => x <= t).length);
+    const [bt, bn] = [$('[data-live=t]', box), $('[data-live=n]', box)];
+    if (bt.textContent !== tt) bt.textContent = tt;
+    if (bn.textContent !== nn) bn.textContent = nn;
+  };
+  const tick = () => {
+    const v = slides[cur]?.dataset.video;
+    if (v === 'manual') live($('#liveA'), vidA, A, SPEED_A);
+    if (v === 'alde') live($('#liveB'), vidB, B);
+    requestAnimationFrame(tick);
+  };
   requestAnimationFrame(tick);
 
   /* ---------- slides ---------- */
