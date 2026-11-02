@@ -973,6 +973,22 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   slides.forEach((s, k) => { const b = document.createElement('button'); b.title = s.dataset.title; b.onclick = () => go(k); $('#rail').appendChild(b); });
   $('#next').onclick = () => go(cur + 1);
   $('#prev').onclick = () => go(cur - 1);
+  // phones: swipe up or left = next, down or right = back; laptops: wheel / trackpad, one slide per gesture
+  let tx, ty;
+  addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+  addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 40) return; // a tap, not a swipe
+    go(cur + ((Math.abs(dx) > Math.abs(dy) ? dx : dy) < 0 ? 1 : -1));
+  }, { passive: true });
+  addEventListener('touchmove', e => e.preventDefault(), { passive: false }); // no page bounce / pull-to-refresh
+  let wheelAt = 0;
+  addEventListener('wheel', e => {
+    e.preventDefault();
+    const d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (Math.abs(d) < 15 || performance.now() - wheelAt < 800) return;
+    wheelAt = performance.now(); go(cur + (d > 0 ? 1 : -1));
+  }, { passive: false });
 
   go((parseInt(location.hash.slice(1), 10) || 1) - 1);
 })();
